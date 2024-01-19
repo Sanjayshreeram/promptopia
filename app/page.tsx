@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import Feed from '@components/Feed';
 
 const Home = () => {
   return (
@@ -13,7 +14,7 @@ const Home = () => {
 <p className='desc text-center'>
   Promptopia is a place to discover and share prompts for writing, drawing, and more.
 </p>
-{/* {feed} */}
+<Feed/>
 
     </section>
   )
