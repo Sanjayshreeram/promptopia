@@ -8,6 +8,7 @@ import {signIn,signOut,useSession,getProviders} from 'next-auth/react'
 const Nav = () => {
     const IsUserLoggedIn=true;
     const [providers,setproviders]=useState<any>(null);
+    const [toggledropdown,settoggledropdown] = useState<boolean>(false);
 
 
     useEffect(()=>{
@@ -38,7 +39,7 @@ const Nav = () => {
                     Sign Out
                 </button>
                 <Link href="/profile" className='flex gap-2 flex-center'>
-                    <Image src='/assets/images/logo.svg' alt="User Icon" width={35} height={35} className='object-contain'/>
+                    <Image src='/assets/images/logo.svg' alt="Profile" width={35} height={35} className='rounded-full'/>
                     <p className='logo_text uppercase'>
                         Profile
                     </p>
@@ -65,18 +66,54 @@ const Nav = () => {
         }
 
     </div>
-     {/* {mobile navigation} */}
+     {/* {mobile navigation} hidden from small screen visible only on xs  */}
     <div className='sm:hidden flex relative'>
         {IsUserLoggedIn ?
         
            (
-            <div>
+            <div className='flex'>
+                                <Image src='/assets/images/logo.svg' alt="User Icon" width={35} height={35} className='object-contain' onClick={()=>settoggledropdown((prev:boolean)=>!prev)}/>
+
+                                {
+                    toggledropdown && (
+
+                        <div className='dropdown'>
+                            <Link href="/profile" className='dropdown_link' onClick={()=>settoggledropdown(false)}>
+                            
+                            My Profile
+                            </Link>
+                            <Link href="/create-prompt" className='dropdown_link' onClick={()=>settoggledropdown(false)}>
+                            
+                            Create Prompt
+                            </Link>
+                            <button type='button' className='mt-5 w-full black_btn' onClick={()=>{settoggledropdown(false); signOut();}}>
+                               Sign Out
+                            </button>
+                        
+
+                        </div>
+                    )
+                }
                 </div>
+
+             
 
            )
 
            :(
+            
             <>
+            {
+                providers && Object.values(providers).map((provider:any)=>(
+
+           <button type='button' key={provider.name} onClick={()=>signIn(provider.id)} className='black_btn'>
+        Sign In
+           </button>
+
+                ))
+            }
+
+
             </>
            )
     }
