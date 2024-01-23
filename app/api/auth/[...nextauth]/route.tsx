@@ -1,7 +1,8 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
-import { Provider } from "next-auth/providers";
+import NextAuth from "next-auth";
+
 import GoogleProvider from 'next-auth/providers/google';
 import { signIn } from "next-auth/react";
+import { connectToDatabase } from "@utils/database";
 
 
 // type props={
@@ -9,18 +10,41 @@ import { signIn } from "next-auth/react";
 //     ClientSecret:string
 // }
 
+console.log({   clientId:process.env.GOOGLE_ID,
+    clientSecret:process.env.GOOGLE_CLIENT_SECRET,})
+// const secret:any=203524816905-a7c2m8i309ca7480sgetodiqqoqvvvfk.apps.googleusercontent.com;
+// const secretid:any=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;
+
 const handler =NextAuth ({
     providers: [
         GoogleProvider({
-            clientId: "",
-            clientSecret: "",
+            clientId: process.env.GOOGLE_ID||" ",
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET||" ",
         })
     ],
-    async session({session}:{session:any}) {
+    async session({session}:{session:any}){
+        
         
 
     },
-    async signIn({ profile }: { profile: any }) {
+    async signIn({ profile }:{profile:any}){
+
+        try{
+            await connectToDatabase();
+            //check if a user already exists
+
+            //if not create a new user
+
+            return true
+
+        }
+        catch(error)
+        {
+            console.log(error);
+            return false;
+        }
+      
+       
 
     }
 });
