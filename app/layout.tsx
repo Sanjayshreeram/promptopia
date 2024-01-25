@@ -2,6 +2,7 @@ import React from 'react';
 import '@styles/globals.css';
 import Nav from '@components/Nav';
 import Provider from '@components/Provider';
+import {getServerSession} from "next-auth/next"
 
 export const metadata = {
     title: "promptopia",
