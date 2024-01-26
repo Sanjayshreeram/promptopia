@@ -41,7 +41,7 @@ const {data:session}=useSession();
                     Sign Out
                 </button>
                 <Link href="/profile" className='flex gap-2 flex-center'>
-                    <Image src='/assets/images/logo.svg' alt="Profile" width={35} height={35} className='rounded-full'/>
+                    <Image src={session?.user.image || ''} alt="Profile" width={35} height={35} className='rounded-full'/>
                     <p className='logo_text uppercase'>
                         Profile
                     </p>
@@ -76,7 +76,7 @@ const {data:session}=useSession();
         
            (
             <div className='flex'>
-                                <Image src='/assets/images/logo.svg' alt="User Icon" width={35} height={35} className='object-contain' onClick={()=>settoggledropdown((prev:boolean)=>!prev)}/>
+                                <Image src={session?.user?.image||' '} alt="User Icon" width={35} height={35} className='rounded-full' onClick={()=>settoggledropdown((prev:boolean)=>!prev)}/>
 
                                 {
                     toggledropdown && (
