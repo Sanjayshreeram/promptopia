@@ -24,14 +24,15 @@ const handler = NextAuth({
       session.user.id = sessionUser._id.toString()
       return session
     },
-    async signIn ({ profile,account,user,credentials }:{profile:any,account:any,user:any,credentials:any}) {
-      try {
+  
+    async signIn({ profile, account, user, credentials }: { profile?: any, account: any, user: any, credentials?: any }) 
+    { try {
         await connectToDatabase()
-        const uesrExists = await User.findOne({ email: profile.email })
-        if (!uesrExists) {
+        const userExists = await User.findOne({ email: profile.email })
+        if (!userExists) {
           await User.create({
             email: profile.email,
-            name: profile.name,
+            username:profile.name.replace(/\s/g, "").toLowerCase(),
             image: profile.picture
           })
         }
