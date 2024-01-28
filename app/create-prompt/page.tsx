@@ -2,12 +2,12 @@
 import React from 'react';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
-
-
+import { useRouter } from 'next/navigation';
 import Form from '@components/Form';
 
 const CreatePrompt = () => {
+    const router=useRouter();
+    const {data:session}=useSession();
 
     const [submitting,issubmitted] = useState<boolean>(false); 
     const [post, setPost] = useState({
@@ -15,7 +15,7 @@ const CreatePrompt = () => {
         tag: "",
     });
 
-    const CreatePrompt= async (e)=>{
+    const CreatePrompt= async ()=>{
         e.preventDefault();
 
         issubmitted(true);
@@ -35,7 +35,7 @@ const CreatePrompt = () => {
                 })
                
             })
-            issubmitted(false);
+            
             const json=await res.json();
             if(!res.ok){
                 throw Error(json.message);
@@ -44,12 +44,17 @@ const CreatePrompt = () => {
             router.push('/');
         }
 
+        finally{
+            issubmitted(false);
+
+        }
+
 
 
 
     }
   return (
-   <Form type="Create" post={post} setPost={setPost} submitting={submitting} handlesubmit={CreatePrompt}>
+   <Form type="Create" post={post} setPost={setPost} submitting={submitting} handlesubmit={()=>CreatePrompt}>
 
 
 
