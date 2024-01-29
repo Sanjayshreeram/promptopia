@@ -24,6 +24,7 @@ export const POST=async (req:any)=>{
          
     }
     catch(error){
+        return new Response("Failed to create a new prompt",{status:500})
         
     }
     
