@@ -1,5 +1,6 @@
 import { connectToDatabase } from "@utils/database";
-import Prompt from "@models/prompt";
+import Prompt from "@models/prompt"; 
+//this will get data sent on localhost 3000 and retrieve info from the server and save it to the database
 
 export const POST=async (req:any)=>{
     const {userId,prompt,tag}= await req.json(); //extracting data from backend
