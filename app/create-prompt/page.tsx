@@ -19,6 +19,7 @@ const CreatePrompt = () => {
     const handleCreatePrompt = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setSubmitting(true);
+        //this will fetch data from ->api->prompt->new
 
         try {
             const res = await fetch('/api/prompt/new', {
