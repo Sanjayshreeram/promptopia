@@ -20,13 +20,20 @@ const Feed = () => {
   }, []);
 
   return (
+
     <div>
+      <input className='w-92 h-12'>
+      </input>
+        <div>
       {data.map((item) => (
         <div key={item.id}>
           <h1>{item.prompt}</h1>
         </div>
       ))}
     </div>
+
+    </div>
+  
   );
 };
 
