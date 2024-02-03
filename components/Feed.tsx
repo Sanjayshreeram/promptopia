@@ -22,7 +22,7 @@ const Feed = () => {
   return (
 
     <div>
-      <input className='w-92 h-12'>
+      <input className='search_input '>
       </input>
         <div>
       {data.map((item) => (
