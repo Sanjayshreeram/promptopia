@@ -9,7 +9,7 @@ const Feed = () => {
     async function fetchData() {
       try {
         const prompts = await fetch('/api/prompt');
-        const data=await prompts.json();
+        const data = await prompts.json();
         setData(data);
       } catch (error) {
         console.error('Error fetching prompts:', error);
@@ -22,18 +22,18 @@ const Feed = () => {
   return (
 
     <div>
-      <input className='search_input '>
+      <input className='search_input  h-12'>
       </input>
-        <div>
-      {data.map((item) => (
-        <div key={item.id}>
-          <h1>{item.prompt}</h1>
-        </div>
-      ))}
-    </div>
+      <div>
+        {data.map((item) => (
+          <div key={item.id}>
+            <h1>{item.prompt}</h1>
+          </div>
+        ))}
+      </div>
 
     </div>
-  
+
   );
 };
 
