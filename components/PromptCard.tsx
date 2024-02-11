@@ -10,7 +10,7 @@ import { usePathname,useRouter } from 'next/navigation';
 
 
 const PromptCard = ({post,handleTagClick,handleEdit,handleDelete}:any) => {
-  console.log(post._id);
+  console.log(post);
   return (
 
     <div className='prompt_card'>

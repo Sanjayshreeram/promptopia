@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Form from '@components/Form';
 import Link from 'next/link'; // Import Link component
 
+
 const CreatePrompt = () => {
     const router = useRouter();
     const { data: session } = useSession();
@@ -29,7 +30,7 @@ const CreatePrompt = () => {
                 },
                 body: JSON.stringify({
                     prompt: post.prompt,
-                    userId: session?.user.id,
+                    userId: session?.user?.name,
                     tag: post.tag,
                 })
             });
