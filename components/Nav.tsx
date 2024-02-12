@@ -37,7 +37,7 @@ const {data:session}=useSession();
                 <Link href="/create-prompt" className='black_btn'>
                 Create Post
                 </Link>
-                <button type='button' onClick={()=>signOut} className='outline_btn'>
+                <button type='button' onClick={()=>signOut({callbackUrl:'http://localhost:3000/'})} className='outline_btn'>
                     Sign Out
                 </button>
                 <Link href="/profile" className='flex gap-2 flex-center'>

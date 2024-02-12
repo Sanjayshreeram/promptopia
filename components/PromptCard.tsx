@@ -10,29 +10,35 @@ import { usePathname,useRouter } from 'next/navigation';
 
 
 const PromptCard = ({post,handleTagClick,handleEdit,handleDelete}:any) => {
-  console.log(post);
+  // console.log(post.creator);
+  const [copied,setcopied]=useState<string>("")
+
   return (
 
     <div className='prompt_card'>
 
       <div className='flex justify-between items-start gap-5'>
         <div className='flex-1 flex justify-start items-center gap-3 cursor-pointer'>
-        {/* <Image src={post.creator.image}
+        <Image src={post?.creator?.image||"/assets/images/user.svg"}
          alt="user_image"
          width={40}
          height={40}
          className='rounded-full object-contain'
 
-        /> */}
+        />
         <div className='flex flex-col'>
-          <h3>
-            {post.prompt}
+          <h3 className='font-semibold font-sans text-gray-900'>
+            { post?.creator?.username||'Anonymous'}
           </h3>
-          <p>
-            {post.creator.email}
+          <p className='font-inter text-sm text-gray-500'>
+            {post?.creator?.username||'Anonymous'}
           </p>
 
         </div>
+        </div>
+        <div className='copy_btn' onClick={()=>{}}>
+          <Image alt="image" src={copied===post.prompt?'/assets/icons/tick.svg':'/assets/icons/copy.svg' } height={12} width={12}/>
+
         </div>
 
       </div>

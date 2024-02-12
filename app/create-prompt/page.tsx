@@ -30,11 +30,11 @@ const CreatePrompt = () => {
                 },
                 body: JSON.stringify({
                     prompt: post.prompt,
-                    userId: session?.user?.name,
+                    userId: session?.user?.id, // Use optional chaining to safely access 'id' property
                     tag: post.tag,
                 })
             });
-            
+
             const json = await res.json();
             if (!res.ok) {
                 throw Error(json.message);
