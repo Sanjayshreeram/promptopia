@@ -13,6 +13,13 @@ const PromptCard = ({post,handleTagClick,handleEdit,handleDelete}:any) => {
   // console.log(post.creator);
   const [copied,setcopied]=useState<string>("")
 
+  const copy=()=>{
+
+    setcopied(post.prompt);
+    navigator.clipboard.writeText(post.prompt);
+    setTimeout(()=>setcopied(""),5000)
+  }
+
   return (
 
     <div className='prompt_card'>
@@ -36,7 +43,7 @@ const PromptCard = ({post,handleTagClick,handleEdit,handleDelete}:any) => {
 
         </div>
         </div>
-        <div className='copy_btn' onClick={()=>{}}>
+        <div className='copy_btn' onClick={copy}>
           <Image alt="image" src={copied===post.prompt?'/assets/icons/tick.svg':'/assets/icons/copy.svg' } height={12} width={12}/>
 
         </div>
