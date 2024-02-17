@@ -23,8 +23,9 @@ const handleDelete = (id: string) => {
     console.log("Delete", id)
 }
 
-const [Post,setpost]=useState<any[]>([]);
+
 const Myprofile = () => {
+    const [Post,setpost]=useState<any[]>([]);
 
     const {data:session}=useSession();
 
@@ -49,7 +50,7 @@ const Myprofile = () => {
 
     },[])
   return (
-   <Profile name="My" desc="Welcome to your personlised profile page" data={Post} handleEdit={handleEdit} handleDelete={handleDelete} {this.props.first}/>
+   <Profile name="My" desc="Welcome to your personlised profile page" data={Post} handleEdit={handleEdit} handleDelete={handleDelete}/>
   )
 }
 
