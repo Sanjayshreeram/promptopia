@@ -11,7 +11,7 @@ const Myprofile = () => {
     const [Post, setPost] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const { data: session } = useSession();
-    console.log("session", session);
+  
 
 
     const handleEdit = (post: any) => { " Edit <post></post>"}

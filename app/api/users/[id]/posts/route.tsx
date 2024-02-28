@@ -10,7 +10,7 @@ export const GET=async (req:any,{params}:any)=>{
     try{
         await connectToDatabase();
 
-        const post=await Prompt.find({creator:params.id}).populate('creator');
+        const post=await Prompt.find({creator:params.id}).populate('creator').exec();
 
         return new Response(JSON.stringify(post),{status:200});
     }
