@@ -6,52 +6,46 @@ import { usePathname,useRouter } from 'next/navigation';
 
 import Profile from '@components/Profile';
 import { set } from 'mongoose';
-import { Session } from 'inspector';
-interface Props {
-    name: string,
-    desc: string,
-    data: any[],
-    handleEdit: any,
-    handleDelete: any
-
-}
-
-const handleEdit = (id: string) => {
-    console.log("Edit", id)
-}
-const handleDelete = (id: string) => {
-    console.log("Delete", id)
-}
-
 
 const Myprofile = () => {
-    const [Post,setpost]=useState<any[]>([]);
-
-    const {data:session}=useSession();
-
-    useEffect(()=>{
-
-        const fetchpost=async()=>{
-            const data=await fetch(`/api/prompt/${session?.user?.id}/posts`);
-            const res=await data.json();
-
-            setpost(res);
+    const [Post, setPost] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+    const { data: session } = useSession();
+    console.log("session", session);
 
 
+    const handleEdit = (post: any) => { " Edit <post></post>"}
 
+        const handleDelete = (post: any) => { "// Delete <post></post>}"  }
 
+    useEffect(() => {
+        const fetchPost = async () => {
+            try { 
+                
+                const data = await fetch(`/api/users/${session?.user?.id}/posts`);
+                console.log("data", data);
+                const res = await data.json();
+                setPost(res);
+                setLoading(false); // Set loading to false after data is fetched
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                setLoading(false); // Set loading to false even if there's an error
+            }
+        };
 
+        fetchPost();
+    }, []);
 
-        }
-        if(session?.user?.id)
-          fetchpost();
+    return (
+      
+        <div>
+            {loading ? (
+                <p>Loading...</p> // Show loading message while fetching data
+            ) : (
+                <Profile name="My" desc="Welcome to your personalized profile page" data={Post} handleEdit={handleEdit} handleDelete={handleDelete} />
+            )}
+        </div>
+    );
+};
 
-
-
-    },[])
-  return (
-   <Profile name="My" desc="Welcome to your personlised profile page" data={Post} handleEdit={handleEdit} handleDelete={handleDelete}/>
-  )
-}
-
-export default Myprofile
+export default Myprofile;
