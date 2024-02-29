@@ -34,7 +34,7 @@ const Myprofile = () => {
         };
 
         fetchPost();
-    }, []);
+    },[] );
 
     return (
       
