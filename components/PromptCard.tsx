@@ -60,7 +60,7 @@ const PromptCard = ({post,handleTagClick,handleEdit,handleDelete}:any) => {
       <p className='font-inter text-sm blue_gradient cursor-pointer '>
       {post.tag}
       </p>
-      {session?.user?.id===post?.creator?._id && pathName==='/profile' &&(
+      {session?.user?.id && session?.user?.id==post?.creator?._id && pathName==='/profile' &&(
         <div className='flex justify-end gap-5'>
           <p className='font-inter text-sm green_gradinet text-black cursor-pointer' onClick={handleEdit}>
             Edit
@@ -68,9 +68,8 @@ const PromptCard = ({post,handleTagClick,handleEdit,handleDelete}:any) => {
           <p className='font-inter text-sm orange_gradinet cursor-pointer' onClick={handleDelete}>
             Edit
           </p>
-          </div>
-
-      ) }
+        </div>
+      )}
       </div>
       
     

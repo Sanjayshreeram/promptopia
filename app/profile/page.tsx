@@ -39,9 +39,9 @@ const Myprofile = () => {
     return (
       
         <div>
-            {loading ? (
-                <p>Loading...</p> // Show loading message while fetching data
-            ) : (
+            {loading ? 
+                (<p>Loading...</p> )
+             : (
                 <Profile name="My" desc="Welcome to your personalized profile page" data={Post} handleEdit={handleEdit} handleDelete={handleDelete} />
             )}
         </div>
