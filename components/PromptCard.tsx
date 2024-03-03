@@ -13,9 +13,12 @@ const PromptCard = ({post,handleTagClick,handleEdit,handleDelete}:any) => {
   // console.log(post.creator);
   const [copied,setcopied]=useState<string>("")
   const { data: session } = useSession();
-  const { pathName }:any = usePathname();
+  const  pathName :any = usePathname();
   const router=useRouter();
-  console.log("session is ",session)
+ 
+  //  console.log("pathname is ",usePathname());
+  // console.log("router is ",router);
+  // console.log("session is ",session)
 
   const copy=()=>{
 
@@ -60,13 +63,13 @@ const PromptCard = ({post,handleTagClick,handleEdit,handleDelete}:any) => {
       <p className='font-inter text-sm blue_gradient cursor-pointer '>
       {post.tag}
       </p>
-      {session?.user?.id && session?.user?.id==post?.creator?._id && pathName==='/profile' &&(
-        <div className='flex justify-end gap-5'>
-          <p className='font-inter text-sm green_gradinet text-black cursor-pointer' onClick={handleEdit}>
+      {session?.user?.id  && pathName=='/profile' && (
+        <div className='flex bottom-3 justify-end gap-5 '>
+          <p className='font-inter  text-sm green_gradinet cursor-pointer' onClick={handleEdit}>
             Edit
           </p>
           <p className='font-inter text-sm orange_gradinet cursor-pointer' onClick={handleDelete}>
-            Edit
+            DELETE
           </p>
         </div>
       )}

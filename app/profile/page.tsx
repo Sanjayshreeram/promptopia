@@ -11,10 +11,15 @@ const Myprofile = () => {
     const [Post, setPost] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const { data: session } = useSession();
+    const router=useRouter();
   
 
 
-    const handleEdit = (post: any) => { " Edit <post></post>"}
+    const handleEdit = (post: any) => { 
+
+        router.push(`/update-prompt?id=${post._id}`)
+
+    }
 
         const handleDelete = (post: any) => { "// Delete <post></post>}"  }
 
