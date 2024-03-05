@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from 'react';
+import React, { useEffect,Suspense } from 'react';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter,useSearchParams } from 'next/navigation';
@@ -88,4 +88,20 @@ const EditPrompt = () => {
     );
 }
 
-export default EditPrompt;
+const Updateprompt=()=>{
+   return  (
+    <>
+     <Suspense>
+    <EditPrompt/>
+</Suspense>
+
+    </>
+   
+
+   )
+   
+  
+    
+}
+
+export default Updateprompt;

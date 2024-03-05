@@ -16,8 +16,9 @@ const Myprofile = () => {
 
 
     const handleEdit = (post: any) => { 
+        console.log(post._id);
 
-        router.push(`/update-prompt?id=${post._id}`)
+        router.push(`/update-prompt?id=${post._id}`);
 
     }
 
@@ -37,9 +38,9 @@ const Myprofile = () => {
                 setLoading(false); // Set loading to false even if there's an error
             }
         };
-
+        if(session?.user?.id)
         fetchPost();
-    },[] );
+    },[session?.user?.id] );
 
     return (
       
