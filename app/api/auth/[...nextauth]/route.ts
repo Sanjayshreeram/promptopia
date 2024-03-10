@@ -13,6 +13,7 @@ const handler = NextAuth({
           prompt: 'consent',
          
         }
+        
       }
     })
   ],

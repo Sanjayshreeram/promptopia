@@ -45,34 +45,37 @@ const EditPrompt = () => {
         console.log('logged',s);
     }
 
-    // const handleCreatePrompt = async (e: React.FormEvent<HTMLFormElement>) => {
-    //     e.preventDefault();
-        // setSubmitting(true);
-        // //this will fetch data from ->api->prompt->new
+    const handleCreatePrompt = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setSubmitting(true);
+        //this will fetch data from ->api->prompt->new
 
-        // try {
-        //     const res = await fetch('/api/prompt/new', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify({
-        //             prompt: post.prompt,
-        //             userId: session?.user?.id, // Use optional chaining to safely access 'id' property
-        //             tag: post.tag,
-        //         })
-    //         });
+        if(!promptId)
+        return alert('propmt id not found')
 
-    //         const json = await res.json();
-    //         if (!res.ok) {
-    //             throw Error(json.message);
-    //         }
-    //         alert('Prompt created successfully');
-    //         router.push('/');
-    //     } finally {
-    //         setSubmitting(false);
-    //     }
-    // };
+        try {
+            const res = await fetch(`/api/prompt/${promptId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    prompt: post.prompt,
+                     // Use optional chaining to safely access 'id' property
+                    tag: post.tag,
+                })
+            });
+
+            const json = await res.json();
+            if (!res.ok) {
+                throw Error(json.message);
+            }
+            alert('Prompt created UPDATED');
+            router.push('/');
+        } finally {
+            setSubmitting(false);
+        }
+    };
 
     return (
         <Form
@@ -80,10 +83,8 @@ const EditPrompt = () => {
             post={post}
             setPost={setPost}
             submitting={submitting}
-            handleSubmit={async (e: React.FormEvent<HTMLFormElement>) => { 
-                e.preventDefault();
-                console.log("Form submitted"); 
-            }}
+            handleSubmit={handleCreatePrompt
+            }
         />
     );
 }
